@@ -34,22 +34,18 @@ namespace WordAddIn1
                 MessageBox.Show(str, title);
 
                 Console.WriteLine(str);
-                Console.ReadKey();
             }
         }
 
         private void button2_Click(object sender, RibbonControlEventArgs e)
         {
-            string message = "Чтения";
-            string title = "Title";
-            var word = new Microsoft.Office.Interop.Word.Application();
-            var doc = word.ActiveDocument;
-            Microsoft.Office.Interop.Word.Paragraphs paras = doc.Paragraphs;
+            Microsoft.Office.Interop.Word.Document nativeDoc = Globals.ThisAddIn.Application.ActiveDocument;
             
-           // application.System.Cursor = wdCursorWait;
 
-            MessageBox.Show(doc.Paragraphs[1].Range.Text, title);
-            
+            nativeDoc.Paragraphs[1].Range.InsertParagraphAfter();
+            nativeDoc.Paragraphs[1].Range.Text = "Called from Test Button";
+            nativeDoc.Paragraphs[1].Range.Font.Underline = WdUnderline.wdUnderlineDash;
+
         }
     }
 }

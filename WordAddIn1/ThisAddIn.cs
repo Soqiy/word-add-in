@@ -13,13 +13,8 @@ namespace WordAddIn1
     {
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            this.Application.DocumentBeforeSave += new Word.ApplicationEvents4_DocumentBeforeSaveEventHandler(Application_DocumentBeforeSave);
-            this.Application.DocumentOpen += new Word.ApplicationEvents4_DocumentOpenEventHandler(WorkWithDocument);
-
-            ((Word.ApplicationEvents4_Event)this.Application).NewDocument +=
-                new Word.ApplicationEvents4_NewDocumentEventHandler(WorkWithDocument);
-
-
+            Application.DocumentOpen += new Word.ApplicationEvents4_DocumentOpenEventHandler(WorkWithDocument);
+            ((Word.ApplicationEvents4_Event)this.Application).NewDocument += new Word.ApplicationEvents4_NewDocumentEventHandler(WorkWithDocument);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -46,7 +41,7 @@ namespace WordAddIn1
             {
                 //paras[i].Range.;
             }
-            string message = "Чтения";
+
             string title = "Title";
             System.Windows.Forms.MessageBox.Show(Doc.Paragraphs[1].Range.Text, title);
             Doc.Paragraphs[1].Range.InsertParagraphBefore();
